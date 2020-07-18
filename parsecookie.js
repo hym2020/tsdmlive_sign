@@ -14,9 +14,6 @@ const cookieDir = path.join(process.cwd(), "cookies")
 function makeCookies(){
 	if(!fs.existsSync(cookieDir))
 		fs.mkdirSync(cookieDir);
-	
-	console.log(atob(process.env.COOKIE));
-	
 	fs.writeFileSync(cookiePath, atob(process.env.COOKIE), "utf-8");
 }
 
