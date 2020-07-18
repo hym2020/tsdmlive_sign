@@ -21,9 +21,9 @@ function makeCookies(){
 function checkCookies(){
 	if(fs.existsSync(cookiePath)){
 		const sitecookies = JSON.parse(fs.readFileSync(cookiePath, "utf-8"));		
-		const authKey = Object.keys(Object.keys(sitecookies)[0]).find(e => /auth/.test(e));
+		const authKey = Object.keys(sitecookies[Object.keys(sitecookies)[0]]["/"]).find(e => /auth/.test(e));
 		
-		if(new Date().getTime() >= new Date(sitecookies[authKey].authKey).getTime())
+		if(new Date().getTime() >= new Date(sitecookies[Object.keys(sitecookies)[0]]["/"][authKey].expires).getTime())
 			sendMessage();
 	}
 }
