@@ -1,6 +1,7 @@
 const fs = require("fs")
 	, path = require("path")
 	, linebot = require("linebot")
+	, atob = require("atob");
 
 const cookieDir = path.join(process.cwd(), "cookies")
 	, cookiePath = path.join(process.cwd(), "cookies", `${process.env.SITENAME}.json`)
@@ -13,7 +14,7 @@ const cookieDir = path.join(process.cwd(), "cookies")
 function makeCookies(){
 	if(!fs.existsSync(cookieDir))
 		fs.mkdirSync(cookieDir);
-	fs.writeFileSync(cookiePath, atob(process.env.COOKIE));
+	fs.writeFileSync(cookiePath, atob(process.env.COOKIE), "utf-8");
 }
 
 
