@@ -1,0 +1,19 @@
+{
+  "name": "tsdmlivesign",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "signup": "node --tls-min-v1.0 tsdmlive/tsdmDailyCheck.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "iconv-lite": "^0.6.2",
+    "linebot": "^1.6.0",
+    "request": "^2.88.2",
+    "tough-cookie-file-store": "^1.2.0"
+  }
+}

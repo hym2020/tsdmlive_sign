@@ -1,0 +1,41 @@
+name: signup
+
+on:
+    push:
+        branches:
+            - master
+    schedule:
+        - cron: "0 */1 * * *"
+jobs:
+    start_sign:
+        name: start_daily_sign
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@master
+            - name: checkout_submodules
+              uses: textbook/git-checkout-submodule-action@master
+            - uses: actions/setup-node@v2-beta
+              with:
+                node-version: '14'
+            - name: pusacg_sign
+              shell: bash
+              env:
+                SITENAME: "tsdmlive"
+                SITEURL: "https://www.tsdm39.net"
+                LINE_USERID: ${{ secrets.LINE_USERID }}
+                LINECHANNEL: ${{ secrets.LINECHANNEL }}
+                LINESECRET: ${{ secrets.LINESECRET }}
+                LINECHANNELTOKEN: ${{ secrets.LINECHANNELTOKEN }}
+                COOKIE: ${{ secrets.COOKIE }}
+                USR: ${{ secrets.USR }}
+                PASS: ${{ secrets.PASS }} 
+              run: |
+                echo "Install Dependencies"
+                npm i
+                echo "Make Cookies file"
+                mkdir cookies
+                node parsecookie.js make
+                npm run signup
+                echo "Check Cookies expired"
+                node parsecookie.js check
